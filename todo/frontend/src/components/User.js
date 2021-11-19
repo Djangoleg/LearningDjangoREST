@@ -41,4 +41,4 @@ const UserList = ({users}) => {
 }
 
 
-export default AuthorList
+export default UserList
