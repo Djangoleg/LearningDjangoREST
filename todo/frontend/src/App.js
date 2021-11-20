@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react'
 import axios from 'axios'
 import UserList from "./components/User";
+import Footer from "./components/Footer";
+import Menu from "./components/Menu";
 
 class App extends React.Component {
     constructor(props) {
@@ -28,12 +30,7 @@ class App extends React.Component {
         return (
             <div className="wrapper">
 
-                <div className="header">
-                    <a className="active" href="index.html">Home</a>
-                    <a href="#news">News</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#about">About</a>
-                </div>
+                <Menu/>
 
                 <div className="content">
                     <div className="contentDiscription">
@@ -42,16 +39,11 @@ class App extends React.Component {
                     <UserList users={this.state.users}/>
                 </div>
 
-                <div className="footer">
-                    <div className="footerText">
-                        ©{(new Date().getFullYear())} by OK
-                    </div>
-                </div>
+                <Footer/>
 
             </div>
         )
     }
-
 }
 
 export default App;
