@@ -24,4 +24,3 @@ class Command(BaseCommand):
                                  last_name='testUserTwo',
                                  email='testoff@geekshop.local',
                                  password='GeekBrains122@')
-
