@@ -24,7 +24,7 @@ class ProjectModelSerializer(ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('name', 'url', 'user')
+        fields = ('name', 'repo_url', 'user')
 
 
 class ToDoModelSerializer(ModelSerializer):

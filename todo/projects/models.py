@@ -5,7 +5,7 @@ from users.models import User
 
 class Project(models.Model):
     name = models.CharField(verbose_name='Название', max_length=1024, blank=False, default=None)
-    url = models.URLField(verbose_name='Ссылка на репозиторий', max_length=500)
+    repo_url = models.URLField(verbose_name='Ссылка на репозиторий', max_length=500)
     user = models.ManyToManyField(User, verbose_name='Пользователь')
 
     def __str__(self):
