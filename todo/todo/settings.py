@@ -135,10 +135,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-# REST_FRAMEWORK ={
-#     'DEFAULT_RENDERER_CLASSES':[
-#         'rest_framework.renderers.JSONRenderer'
-#     ]
+JSON_CAMEL_CASE = {
+    'RENDERER_CLASS': 'rest_framework.renderers.UnicodeJSONRenderer'
+}
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_camel.render.CamelCaseJSONRenderer',
+#     ),
+#     'DEFAULT_PARSER_CLASSES': (
+#         'rest_camel.parser.CamelCaseJSONParser',
+#     ),
 # }
 #
 # if DEBUG:
