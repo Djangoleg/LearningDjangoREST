@@ -6,14 +6,10 @@ from users.models import User
 class Project(models.Model):
     name = models.CharField(verbose_name='Название', max_length=1024, blank=False, default=None)
     url = models.URLField(verbose_name='Ссылка на репозиторий', max_length=500)
+    user = models.ManyToManyField(User, verbose_name='Пользователь')
 
     def __str__(self):
         return f'{self.name}'
-
-
-class ProjectItem(models.Model):
-    project = models.ForeignKey(Project, verbose_name='Проект', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
 
 class ToDo(models.Model):
