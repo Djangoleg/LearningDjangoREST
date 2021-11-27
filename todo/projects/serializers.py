@@ -30,4 +30,4 @@ class ProjectModelSerializer(ModelSerializer):
 class ToDoModelSerializer(ModelSerializer):
     class Meta:
         model = ToDo
-        fields = ('project', 'text', 'user', 'is_active')
+        fields = ('id', 'project', 'text', 'user', 'is_active')
