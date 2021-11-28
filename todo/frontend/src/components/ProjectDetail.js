@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Moment from "moment"
+import Moment from "moment" /* npm install moment --save */
 
 const ProjectTodoItem = ({item}) => {
     return (
