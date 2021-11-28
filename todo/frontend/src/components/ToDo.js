@@ -1,5 +1,7 @@
 import React from 'react'
-import Moment from 'moment'; /* npm install moment --save */
+import Moment from 'moment';
+import app_path from "../AppPath";
+import {Link} from "react-router-dom"; /* npm install moment --save */
 
 
 const TodoItem = ({todo}) => {
@@ -12,7 +14,7 @@ const TodoItem = ({todo}) => {
                 {Moment(todo.updated_on).format('DD:MM:YYYY HH:mm:ss')}
             </td>
             <td>
-                {todo.project}
+                <Link to={app_path.projects + '/$' + todo.project}>{todo.project}</Link>
             </td>
             <td>
                 {todo.text}

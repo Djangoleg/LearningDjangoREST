@@ -1,5 +1,6 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
+import app_path from "../AppPath";
 
 const ProjectItem = ({project}) => {
     return (
@@ -8,7 +9,7 @@ const ProjectItem = ({project}) => {
                 {project.id}
             </td>
             <td>
-                <a href="#/project/{project.id}">{project.name}</a>
+                {project.name}
             </td>
             <td>
                 {project.repoUrl}
