@@ -7,6 +7,7 @@ import ProjectList from "./components/Projects";
 import TodoList from "./components/ToDo";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
+import ProjectTodoList from "./components/ProjectDetail"
 import {HashRouter, Route, Switch, Redirect} from 'react-router-dom'
 import app_path from "./AppPath";
 
@@ -112,6 +113,15 @@ class App extends React.Component {
                                         <TodoList todos={this.state.todos}/>
                                     </div>
                                 }/>
+                                <Route path="/project/:id">
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Заметки проекта</b>
+                                        </div>
+                                        <ProjectTodoList items={this.state.todos} />
+                                    </div>
+
+                                </Route>
 
                                 <Route component={NotFound404}/>
 

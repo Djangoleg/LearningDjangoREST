@@ -9,7 +9,7 @@ const ProjectItem = ({project}) => {
                 {project.id}
             </td>
             <td>
-                {project.name}
+                <Link to={app_path.project + '/' + project.id}>{project.name}</Link>
             </td>
             <td>
                 {project.repoUrl}
