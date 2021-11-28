@@ -86,38 +86,37 @@ class App extends React.Component {
                 <HashRouter>
                     <div className="wrapper">
                         <Menu/>
-                        <Switch>
-                            <Route exact path={app_path.users} component={() =>
-                                <div className="content">
-                                    <div className="contentDiscription">
-                                        <b>Пользователи</b>
+                        <div className="content">
+                            <Switch>
+                                <Route exact path={app_path.users} component={() =>
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Пользователи</b>
+                                        </div>
+                                        <UserList users={this.state.users}/>
                                     </div>
-                                    <UserList users={this.state.users}/>
-                                </div>
-                            }/>
-                            <Route exact path={app_path.projects} component={() =>
-                                <div className="content">
-                                    <div className="contentDiscription">
-                                        <b>Проекты</b>
+                                }/>
+                                <Route exact path={app_path.projects} component={() =>
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Проекты</b>
+                                        </div>
+                                        <ProjectList projects={this.state.projects}/>
                                     </div>
-                                    <ProjectList projects={this.state.projects}/>
-                                </div>
-                            }/>
-                            <Route exact path={app_path.todo} component={() =>
-                                <div className="content">
-                                    <div className="contentDiscription">
-                                        <b>Заметки</b>
+                                }/>
+                                <Route exact path={app_path.todo} component={() =>
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Заметки</b>
+                                        </div>
+                                        <TodoList todos={this.state.todos}/>
                                     </div>
-                                    <TodoList todos={this.state.todos}/>
-                                </div>
-                            }/>
-                            {/*<div className="content">*/}
-                            {/*    <Redirect from={app_path.todo} to={app_path.users} />*/}
-                            {/*</div>*/}
-                            <div className="content">
+                                }/>
+
                                 <Route component={NotFound404}/>
-                            </div>
-                        </Switch>
+
+                            </Switch>
+                        </div>
                         <Footer/>
                     </div>
                 </HashRouter>
