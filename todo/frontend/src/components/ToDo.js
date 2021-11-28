@@ -1,50 +1,63 @@
 import React from 'react'
+import Moment from 'moment'; /* npm install moment --save */
 
 
-const UserItem = ({user}) => {
+const TodoItem = ({todo}) => {
     return (
         <tr>
             <td>
-                {user.id}
+                {todo.id}
             </td>
             <td>
-                {user.username}
+                {Moment(todo.updated_on).format('DD:MM:YYYY HH:mm:ss')}
             </td>
             <td>
-                {user.firstName}
+                {todo.project}
             </td>
             <td>
-                {user.lastName}
+                {todo.text}
             </td>
             <td>
-                {user.email}
+                {todo.user}
+            </td>
+            <td>
+                {todo.isActive ? 'Yes' : 'No'}
             </td>
         </tr>
     )
 }
 
-const UserList = ({users}) => {
+const TodoList = ({todos}) => {
    return (
        <table>
-           <th>
-               ID
-           </th>
-           <th>
-               User name
-           </th>
-           <th>
-               First name
-           </th>
-           <th>
-               Last Name
-           </th>
-           <th>
-               E-mail
-           </th>
-           {users.map((user) => <UserItem user={user} />)}
+           <thead>
+               <tr>
+                   <th>
+                       ID
+                   </th>
+                   <th>
+                       Updated
+                   </th>
+                   <th>
+                       Project
+                   </th>
+                   <th>
+                       Text
+                   </th>
+                   <th>
+                       user
+                   </th>
+                   <th>
+                       Active
+                   </th>
+               </tr>
+           </thead>
+           <tbody>
+            {todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
+           </tbody>
        </table>
    )
 }
 
 
-export default UserList
+export default TodoList

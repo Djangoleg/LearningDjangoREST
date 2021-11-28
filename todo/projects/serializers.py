@@ -24,10 +24,10 @@ class ProjectModelSerializer(ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('name', 'repo_url', 'user')
+        fields = ('id', 'name', 'repo_url', 'user')
 
 
 class ToDoModelSerializer(ModelSerializer):
     class Meta:
         model = ToDo
-        fields = ('id', 'project', 'text', 'user', 'is_active')
+        fields = ('id', 'created_on', 'updated_on', 'project', 'text', 'user', 'is_active')

@@ -5,7 +5,10 @@ const ProjectItem = ({project}) => {
     return (
         <tr>
             <td>
-                {project.name}
+                {project.id}
+            </td>
+            <td>
+                <a href="#/project/{project.id}">{project.name}</a>
             </td>
             <td>
                 {project.repoUrl}
@@ -20,16 +23,25 @@ const ProjectItem = ({project}) => {
 const ProjectList = ({projects}) => {
    return (
        <table>
-           <th>
-               Name
-           </th>
-           <th>
-               URL
-           </th>
-           <th>
-               User
-           </th>
-           {projects.map((project) => <ProjectItem project={project} />)}
+           <thead>
+               <tr>
+                   <th>
+                       ID
+                   </th>
+                   <th>
+                       Name
+                   </th>
+                   <th>
+                       URL
+                   </th>
+                   <th>
+                       User
+                   </th>
+               </tr>
+           </thead>
+           <tbody>
+            {projects.map((project) => <ProjectItem key={project.id} project={project} />)}
+           </tbody>
        </table>
    )
 }
