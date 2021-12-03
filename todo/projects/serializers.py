@@ -18,16 +18,29 @@ class UserRelatedField(StringRelatedField):
             raise ValidationError(f"User with name: {value} not found")
 
 
+class ProjectRelatedField(StringRelatedField):
+
+    def to_internal_value(self, value):
+        project = Project.objects.filter(id=value)
+        if project and (len(project)) == 1:
+            return project.get().id
+        else:
+            raise ValidationError(f"Project with id: {value} not found")
+
+
 class ProjectModelSerializer(ModelSerializer):
     # user = StringRelatedField(many=True)
     user = UserRelatedField(many=True)
 
     class Meta:
         model = Project
-        fields = ('name', 'repo_url', 'user')
+        fields = ('id', 'name', 'repo_url', 'user')
 
 
 class ToDoModelSerializer(ModelSerializer):
+    user = UserRelatedField(many=False)
+    project = ProjectRelatedField(many=False)
+
     class Meta:
         model = ToDo
-        fields = ('id', 'project', 'text', 'user', 'is_active')
+        fields = ('id', 'created_on', 'updated_on', 'project', 'project_id', 'text', 'user', 'is_active')
