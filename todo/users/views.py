@@ -10,15 +10,6 @@ class UserModelViewSet(ModelViewSet):
     serializer_class = UserModelSerializer
 
 
-"""
-Model User: есть возможность просмотра списка и каждого пользователя в отдельности, 
-можно вносить изменения, нельзя удалять и создавать;
-"""
-
-
-class UserModelCustomViewSet(RetrieveModelMixin,
-                             UpdateModelMixin,
-                             ListModelMixin,
-                             GenericViewSet):
+class UserModelCustomViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
