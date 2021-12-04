@@ -23,7 +23,7 @@ const Menu = () => {
                 handleClick(e);
             }}>TODO</Link>
         </div>
-    )
+    );
 }
 
 export default Menu

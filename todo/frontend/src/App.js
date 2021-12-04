@@ -81,7 +81,7 @@ class App extends React.Component {
 
     load_data() {
 
-        const headers = this.get_headers()
+        const headers = this.get_headers();
 
         axios.get('http://127.0.0.1:8000/api/users/', {headers})
             .then(response => {
@@ -92,9 +92,9 @@ class App extends React.Component {
                     }
                 )
             }).catch(error => {
-            this.setState({users: []})
-            console.log(error)
-        })
+            this.setState({users: []});
+            console.log(error);
+        });
 
         axios.get('http://127.0.0.1:8000/api/projects/', {headers})
             .then(response => {
@@ -105,9 +105,9 @@ class App extends React.Component {
                     }
                 )
             }).catch(error => {
-            this.setState({projects: []})
-            console.log(error)
-        })
+            this.setState({projects: []});
+            console.log(error);
+        });
 
         axios.get('http://127.0.0.1:8000/api/todo/', {headers})
             .then(response => {
@@ -118,9 +118,9 @@ class App extends React.Component {
                     }
                 )
             }).catch(error => {
-            this.setState({todos: []})
-            console.log(error)
-        })
+            this.setState({todos: []});
+            console.log(error);
+        });
     }
 
     componentDidMount() {
@@ -201,7 +201,7 @@ class App extends React.Component {
                     </div>
                 </HashRouter>
             </div>
-        )
+        );
     }
 }
 

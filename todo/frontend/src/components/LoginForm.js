@@ -1,5 +1,6 @@
 import React from 'react'
 import app_path from "../AppPath";
+import {inactiveLinkClass} from "../common"
 
 
 class LoginForm extends React.Component {
@@ -16,24 +17,11 @@ class LoginForm extends React.Component {
         );
     }
 
-    inactiveLinkClass() {
-        var header = document.getElementsByClassName('switchButtoms');
-        if (header) {
-            if (header.length > 0) {
-                if (header[0].children) {
-                    for (var i = 0; i < header[0].children.length; i++) {
-                        header[0].children[i].className = 'inactive';
-                    }
-                }
-            }
-        }
-    }
-
     handleSubmit(event) {
         // console.log(this.state.login + ' ' + this.state.password)
         this.props.get_token(this.state.login, this.state.password);
         event.preventDefault();
-        this.inactiveLinkClass();
+        inactiveLinkClass();
         document.location.hash = '#' + app_path.users;
     }
 
