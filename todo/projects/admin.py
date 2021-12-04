@@ -1,9 +1,6 @@
 from django.contrib import admin
 
-from projects.models import Project
+from projects.models import Project, ToDo
 
-
-@admin.register(Project)
-class UserAdmin(admin.ModelAdmin):
-    model = Project
-
+admin.site.register(Project)
+admin.site.register(ToDo)
