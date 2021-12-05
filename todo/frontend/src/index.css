@@ -26,6 +26,10 @@ code {
     background: #d7ded4
 }
 
+.header .login {
+    float: right;
+}
+
 .footer {
     display: flex;
     justify-content: center;
@@ -39,6 +43,7 @@ code {
 .content {
     flex: 1;
     text-align: -webkit-center;
+    text-align: -moz-center;
 }
 
 .contentDiscription {

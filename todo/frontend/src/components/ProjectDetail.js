@@ -11,7 +11,7 @@ const ProjectTodoItem = ({item}) => {
             <td>{Moment(item.updatedOn).format('DD:MM:YYYY HH:mm:ss')}</td>
             <td>{item.isActive ? 'Yes' : 'No'}</td>
         </tr>
-    )
+    );
 }
 
 
@@ -34,7 +34,7 @@ const ProjectTodoList = ({items}) => {
                 {filtered_items.map((item) => <ProjectTodoItem key={item.id} item={item} />)}
             </tbody>
         </table>
-    )
+    );
 }
 
-export default ProjectTodoList
+export default ProjectTodoList;
