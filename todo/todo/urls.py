@@ -57,6 +57,6 @@ urlpatterns = [
     path('swagger/<str:format>/', schema_view.without_ui()),
 
     # path('api/<str:version>/users/', UserModelListAPIView.as_view()),
-    path('api/users/v1', include('users.urls', namespace='v1')),
-    path('api/users/v2', include('users.urls', namespace='v2')),
+    # path('api/users/v1', include('users.urls', namespace='v1')),
+    # path('api/users/v2', include('users.urls', namespace='v2')),
 ]

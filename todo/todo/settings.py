@@ -139,11 +139,11 @@ AUTH_USER_MODEL = 'users.User'
 # }
 
 # from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly, DjangoModelPermissionsOrAnonReadOnly
-# from rest_framework.versioning import URLPathVersioning, NamespaceVersioning
+# from rest_framework.versioning import URLPathVersioning, NamespaceVersioning, QueryParameterVersioning
 
 REST_FRAMEWORK = {
 
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
 
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
