@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'users',
     'projects',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +139,11 @@ AUTH_USER_MODEL = 'users.User'
 # }
 
 # from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly, DjangoModelPermissionsOrAnonReadOnly
+# from rest_framework.versioning import URLPathVersioning, NamespaceVersioning
 
 REST_FRAMEWORK = {
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
 
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 

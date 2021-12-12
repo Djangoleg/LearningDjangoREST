@@ -4,7 +4,6 @@ from rest_framework.relations import StringRelatedField, PrimaryKeyRelatedField,
 from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer
 
 from users.models import User
-from users.serializers import UserModelSerializer
 from .models import Project, ToDo
 
 
