@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+from graphene_django.views import GraphQLView
 from rest_framework.authtoken import views
 from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONOpenAPIRenderer
@@ -67,4 +69,6 @@ urlpatterns = [
     # path('api/<str:version>/users/', UserModelListAPIView.as_view()),
     # path('api/users/v1', include('users.urls', namespace='v1')),
     # path('api/users/v2', include('users.urls', namespace='v2')),
+
+    path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
