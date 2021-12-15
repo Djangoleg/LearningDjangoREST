@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from rest_framework.authtoken import views
+from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONOpenAPIRenderer
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from rest_framework.schemas import get_schema_view
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 
-from users.views import UserModelCustomViewSet, UserModelViewSet
+from rest_framework.schemas import get_schema_view as drf_get_schema_view
+
+from users.views import UserModelCustomViewSet, UserModelListAPIView
 from projects.views import ToDoModelViewSet, ProjectLimitOffsetPaginatonViewSet
 
 router = DefaultRouter()
@@ -29,7 +34,19 @@ router.register('users', UserModelCustomViewSet)
 router.register('projects', ProjectLimitOffsetPaginatonViewSet)
 router.register('todo', ToDoModelViewSet)
 
-schema_view = get_schema_view(title='TODO')
+schema_view = get_schema_view(
+    openapi.Info(
+        title='ToDO',
+        default_version='v2',
+        description='Documentation for out project',
+        contact=openapi.Contact(email='test@gmail.com'),
+        license=openapi.License(name='Open source')
+    ),
+    public=True,
+    permission_classes=(AllowAny,)
+)
+
+drf_schema_view = drf_get_schema_view(title='TODO')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,5 +57,14 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('schema/', schema_view),
+    path('swagger/', schema_view.with_ui('swagger')),
+    path('redoc/', schema_view.with_ui('redoc')),
+    path('swagger/<str:format>/', schema_view.without_ui()),
+
+    # Получение схемы через DRF.
+    path('schema/', drf_schema_view),
+
+    # path('api/<str:version>/users/', UserModelListAPIView.as_view()),
+    # path('api/users/v1', include('users.urls', namespace='v1')),
+    # path('api/users/v2', include('users.urls', namespace='v2')),
 ]
