@@ -7,7 +7,7 @@ from users.models import User
 from .models import Project, ToDo
 
 
-class UserRelatedField(StringRelatedField):
+class UserNameRelatedField(StringRelatedField):
 
     def to_internal_value(self, value):
         user = User.objects.filter(username=value)
@@ -15,6 +15,16 @@ class UserRelatedField(StringRelatedField):
             return user.get().id
         else:
             raise ValidationError(f"User with name: {value} not found")
+
+
+class UserIdRelatedField(StringRelatedField):
+
+    def to_internal_value(self, value):
+        user = User.objects.filter(id=value)
+        if user and (len(user)) == 1:
+            return value
+        else:
+            raise ValidationError(f"User with Id: {value} not found")
 
 
 class ProjectRelatedField(StringRelatedField):
@@ -29,7 +39,8 @@ class ProjectRelatedField(StringRelatedField):
 
 class ProjectModelSerializer(ModelSerializer):
     # user = StringRelatedField(many=True)
-    user = UserRelatedField(many=True)
+    # user = UserNameRelatedField(many=True)
+    user = UserIdRelatedField(many=True)
 
     class Meta:
         model = Project
@@ -37,9 +48,10 @@ class ProjectModelSerializer(ModelSerializer):
 
 
 class ToDoModelSerializer(ModelSerializer):
-    user = UserRelatedField(many=False)
-    project = ProjectRelatedField(many=False)
+    # user = UserRelatedField(many=False)
+    # project = ProjectRelatedField()
 
     class Meta:
         model = ToDo
-        fields = ('id', 'created_on', 'updated_on', 'project', 'project_id', 'text', 'user', 'is_active')
+        fields = '__all__'
+        # fields = ('id', 'created_on', 'updated_on', 'project', 'project_id', 'text', 'user', 'is_active')

@@ -18,7 +18,7 @@ const ProjectTodoItem = ({item}) => {
 const ProjectTodoList = ({items}) => {
 
     let { id } = useParams();
-    let filtered_items = items.filter((item) => item.projectId == id)
+    let filtered_items = items.filter((item) => item.project == id)
     return (
         <table>
             <thead>

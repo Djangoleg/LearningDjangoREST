@@ -1,7 +1,7 @@
 import React from 'react'
 import Moment from 'moment' /* npm install moment --save */
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, deleteToDo}) => {
     return (
         <tr>
             <td>
@@ -22,14 +22,22 @@ const TodoItem = ({todo}) => {
             <td>
                 {todo.isActive ? 'Yes' : 'No'}
             </td>
+            <td>
+                <button onClick={()=>deleteToDo(todo.id)} type='button'>Delete</button>
+            </td>
         </tr>
     )
 }
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos, deleteToDo}) => {
    return (
        <table>
            <thead>
+               <tr>
+                   <td>
+                        <button type='button'>Create</button>
+                   </td>
+               </tr>
                <tr>
                    <th>
                        ID
@@ -49,10 +57,13 @@ const TodoList = ({todos}) => {
                    <th>
                        Active
                    </th>
+                   <th>
+                       Action
+                   </th>
                </tr>
            </thead>
            <tbody>
-            {todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
+            {todos.map((todo) => <TodoItem key={todo.id} todo={todo} deleteToDo={deleteToDo}/>)}
            </tbody>
        </table>
    )

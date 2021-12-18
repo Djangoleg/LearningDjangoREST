@@ -5,6 +5,7 @@ const app_path = {
         'project_id': '/project/:id',
         'todo': '/todo',
         'login': '/login',
+        'project_create': '/projects/create',
     };
 
 export default app_path
