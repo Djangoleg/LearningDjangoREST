@@ -44,7 +44,8 @@ class ProjectModelSerializer(ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('id', 'name', 'repo_url', 'user')
+        fields = '__all__'
+        # fields = ('id', 'name', 'repo_url', 'user')
 
 
 class ToDoModelSerializer(ModelSerializer):

@@ -1,5 +1,7 @@
 import React from 'react'
-import Moment from 'moment' /* npm install moment --save */
+import Moment from 'moment'
+import app_path from "../AppPath";
+import {Link} from "react-router-dom"; /* npm install moment --save */
 
 const TodoItem = ({todo, deleteToDo}) => {
     return (
@@ -31,41 +33,40 @@ const TodoItem = ({todo, deleteToDo}) => {
 
 const TodoList = ({todos, deleteToDo}) => {
    return (
-       <table>
-           <thead>
-               <tr>
-                   <td>
-                        <button type='button'>Create</button>
-                   </td>
-               </tr>
-               <tr>
-                   <th>
-                       ID
-                   </th>
-                   <th>
-                       Updated
-                   </th>
-                   <th>
-                       Project
-                   </th>
-                   <th>
-                       Text
-                   </th>
-                   <th>
-                       User
-                   </th>
-                   <th>
-                       Active
-                   </th>
-                   <th>
-                       Action
-                   </th>
-               </tr>
-           </thead>
-           <tbody>
-            {todos.map((todo) => <TodoItem key={todo.id} todo={todo} deleteToDo={deleteToDo}/>)}
-           </tbody>
-       </table>
+       <div>
+           <table>
+               <thead>
+                   <tr>
+                       <th>
+                           ID
+                       </th>
+                       <th>
+                           Updated
+                       </th>
+                       <th>
+                           Project
+                       </th>
+                       <th>
+                           Text
+                       </th>
+                       <th>
+                           User
+                       </th>
+                       <th>
+                           Active
+                       </th>
+                       <th>
+                           Action
+                       </th>
+                   </tr>
+               </thead>
+               <tbody>
+                {todos.map((todo) => <TodoItem key={todo.id} todo={todo} deleteToDo={deleteToDo}/>)}
+               </tbody>
+           </table>
+           <Link to={app_path.todo_create}>Create</Link>
+       </div>
+
    )
 }
 

@@ -16,6 +16,8 @@ import {inactiveLinkClass, setActiveLink} from "./common"
 import {Link} from 'react-router-dom'
 import {NavLink} from "react-router-dom";
 import ProjectForm from "./components/ProjectForm";
+import TodoForm from "./components/TodoForm";
+
 
 const NotFound404 = ({location}) => {
     return (
@@ -164,7 +166,7 @@ class App extends React.Component {
 
     createProject(name, repo_url, user) {
         const headers = this.get_headers()
-        const data = {name: name, repoUrl: repo_url, user: [user]}
+        const data = {name: name, repoUrl: repo_url, user: user}
 
         axios.post(`http://127.0.0.1:8000/api/projects/`, data, {headers})
             .then(response => {
@@ -178,6 +180,38 @@ class App extends React.Component {
             }).catch(error => console.log(error))
     }
 
+    editProject(id, name, repo_url, user) {
+        const headers = this.get_headers()
+        const data = {id: id, name: name, repoUrl: repo_url, user: user}
+
+        axios.put(`http://127.0.0.1:8000/api/projects/${id}/`, data, {headers})
+            .then(response => {
+
+              this.load_data();
+
+            }).catch(error => console.log(error))
+    }
+
+    addEditProjectParams(id, name, url, user) {
+        window.location.assign('#' + app_path.project_edit + '/' + id);
+    }
+
+    createTodo(text, project, user) {
+
+        const headers = this.get_headers()
+        const data = {text: text, project: project, user: user}
+
+        axios.post(`http://127.0.0.1:8000/api/todo/`, data, {headers})
+            .then(response => {
+
+              let new_todo = response.data
+              // const user = this.state.users.filter((item) => item.username === new_project.user[0])[0];
+              // new_project.user = user;
+
+              this.setState({todos: [...this.state.todos, new_todo]})
+
+            }).catch(error => console.log(error))
+    }
 
     render() {
         return (
@@ -218,7 +252,10 @@ class App extends React.Component {
                                             <b>Проекты</b>
                                         </div>
                                         <ProjectList projects={this.state.projects}
-                                                     deleteProject={(id) => this.deleteProject(id)}/>
+                                                     deleteProject={(id) => this.deleteProject(id)}
+                                                     addEditProjectParams={(id, name, url, user) =>
+                                                         this.addEditProjectParams(id, name, url, user)}
+                                        />
                                     </div>
                                 }/>
                                 <Route exact path={app_path.todo} component={() =>
@@ -239,9 +276,29 @@ class App extends React.Component {
                                     </div>
 
                                 </Route>
+                                <Route exact path={app_path.project_edit_id} component={ () =>
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Редактирование проекта</b>
+                                        </div>
+                                        <ProjectForm users={this.state.users}
+                                                     projects={this.state.projects}
+                                                     is_create={false}
+                                                     editProject={(id, name, url, user) =>
+                                                         this.editProject(id, name, url, user)}
+                                        />
+                                    </div>
+                                }/>
                                 <Route exact path={app_path.project_create} component={ () =>
                                     <ProjectForm users={this.state.users}
-                                        createProject={(name, repo_url, user) => this.createProject(name, repo_url, user)}/>
+                                                 is_create={true}
+                                                 createProject={(name, repo_url, user) =>
+                                                     this.createProject(name, repo_url, user)}/>
+                                }/>
+                                <Route exact path={app_path.todo_create} component={ () =>
+                                    <TodoForm users={this.state.users}
+                                              projects={this.state.projects}
+                                        createTodo={(text, project, user) => this.createTodo(text, project, user)}/>
                                 }/>
                                 <Route component={NotFound404}/>
                             </Switch>

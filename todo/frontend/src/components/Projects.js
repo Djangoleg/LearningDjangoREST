@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import app_path from "../AppPath";
 
-const ProjectItem = ({project, deleteProject}) => {
+const ProjectItem = ({project, deleteProject, addEditProjectParams}) => {
     return (
         <tr>
             <td>
@@ -15,10 +15,10 @@ const ProjectItem = ({project, deleteProject}) => {
                 {project.repoUrl}
             </td>
             <td>
-                {project.user}
+                {project.user.join(", ")}
             </td>
             <td>
-                <button type='button'>Edit</button>
+                <button onClick={()=>addEditProjectParams(project.id, project.name, project.repoUrl, project.user)} type='button'>Edit</button>
                 {' '}
                 <button onClick={()=>deleteProject(project.id)} type='button'>Delete</button>
             </td>
@@ -26,7 +26,7 @@ const ProjectItem = ({project, deleteProject}) => {
     )
 }
 
-const ProjectList = ({projects, deleteProject}) => {
+const ProjectList = ({projects, deleteProject, addEditProjectParams}) => {
    return (
        <div>
            <table>
@@ -42,7 +42,7 @@ const ProjectList = ({projects, deleteProject}) => {
                            URL
                        </th>
                        <th>
-                           User
+                           Users
                        </th>
                        <th>
                            Action
@@ -50,10 +50,14 @@ const ProjectList = ({projects, deleteProject}) => {
                    </tr>
                </thead>
                <tbody>
-                {projects.map((project) => <ProjectItem key={project.id} project={project} deleteProject={deleteProject} />)}
+                {projects.map((project) => <ProjectItem key={project.id}
+                                                        project={project}
+                                                        deleteProject={deleteProject}
+                                                        addEditProjectParams={addEditProjectParams}
+                />)}
                </tbody>
            </table>
-           <Link to='/projects/create'>Create</Link>
+           <Link to={app_path.project_create}>Create</Link>
        </div>
    )
 }
