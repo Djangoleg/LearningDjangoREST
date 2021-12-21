@@ -192,10 +192,6 @@ class App extends React.Component {
             }).catch(error => console.log(error))
     }
 
-    addEditProjectParams(id, name, url, user) {
-        window.location.assign('#' + app_path.project_edit + '/' + id);
-    }
-
     createTodo(text, project, user) {
 
         const headers = this.get_headers()
@@ -253,10 +249,7 @@ class App extends React.Component {
                                             <b>Проекты</b>
                                         </div>
                                         <ProjectList projects={this.state.projects}
-                                                     deleteProject={(id) => this.deleteProject(id)}
-                                                     addEditProjectParams={(id, name, url, user) =>
-                                                         this.addEditProjectParams(id, name, url, user)}
-                                        />
+                                                     deleteProject={(id) => this.deleteProject(id)}/>
                                     </div>
                                 }/>
                                 <Route exact path={app_path.todo} component={() =>

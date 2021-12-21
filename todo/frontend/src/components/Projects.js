@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import app_path from "../AppPath";
 
-const ProjectItem = ({project, deleteProject, addEditProjectParams}) => {
+const ProjectItem = ({project, deleteProject}) => {
     return (
         <tr>
             <td>
@@ -18,7 +18,11 @@ const ProjectItem = ({project, deleteProject, addEditProjectParams}) => {
                 {project.user.join(", ")}
             </td>
             <td>
-                <button onClick={()=>addEditProjectParams(project.id, project.name, project.repoUrl, project.user)} type='button'>Edit</button>
+                <button onClick={function () {
+
+                    window.location.assign('#' + app_path.project_edit + '/' + project.id)
+
+                }} type='button'>Edit</button>
                 {' '}
                 <button onClick={()=>deleteProject(project.id)} type='button'>Delete</button>
             </td>
@@ -26,7 +30,7 @@ const ProjectItem = ({project, deleteProject, addEditProjectParams}) => {
     )
 }
 
-const ProjectList = ({projects, deleteProject, addEditProjectParams}) => {
+const ProjectList = ({projects, deleteProject}) => {
    return (
        <div>
            <table>
@@ -53,7 +57,6 @@ const ProjectList = ({projects, deleteProject, addEditProjectParams}) => {
                 {projects.map((project) => <ProjectItem key={project.id}
                                                         project={project}
                                                         deleteProject={deleteProject}
-                                                        addEditProjectParams={addEditProjectParams}
                 />)}
                </tbody>
            </table>

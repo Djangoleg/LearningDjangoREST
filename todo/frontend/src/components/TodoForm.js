@@ -45,33 +45,35 @@ class TodoForm extends React.Component {
             <form onSubmit={(event) => this.handleSubmit(event)}>
 
                 <table>
-                    <tr>
-                        <td>
-                            <label htmlFor="text">Текст заметки </label>
-                        </td>
-                        <td>
-                            <input type="text" className="form-control-text" name="text" value={this.state.text}
-                           onChange={(event) => this.handleChange(event)}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label htmlFor="project">Проект </label>
-                        </td>
-                        <td>
-                            <Select name="project" className='form-control-select' onChange={(event)=>this.handleChangeSelect(event)}
-                            options={this.props.projects.map((item) => ({ label: item.name, value: item.id, name: 'project' }))} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label htmlFor="user">Пользователь </label>
-                        </td>
-                        <td>
-                            <Select name="user" className='form-control-select' onChange={(event)=>this.handleChangeSelect(event)}
-                            options={this.props.users.map((item)=>({ label: item.username, value: item.id, name: 'user' }))} />
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label htmlFor="text">Текст заметки </label>
+                            </td>
+                            <td>
+                                <input type="text" className="form-control-text" name="text" value={this.state.text}
+                               onChange={(event) => this.handleChange(event)}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label htmlFor="project">Проект </label>
+                            </td>
+                            <td>
+                                <Select name="project" className='form-control-select' onChange={(event)=>this.handleChangeSelect(event)}
+                                options={this.props.projects.map((item) => ({ label: item.name, value: item.id, name: 'project' }))} />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label htmlFor="user">Пользователь </label>
+                            </td>
+                            <td>
+                                <Select name="user" className='form-control-select' onChange={(event)=>this.handleChangeSelect(event)}
+                                options={this.props.users.map((item)=>({ label: item.username, value: item.id, name: 'user' }))} />
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <input type="submit" className="btn btn-primary" value="Save"/>
             </form>
