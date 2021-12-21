@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select';
 
-
 class TodoForm extends React.Component {
 
     constructor(props) {
@@ -44,25 +43,36 @@ class TodoForm extends React.Component {
 
         return (
             <form onSubmit={(event) => this.handleSubmit(event)}>
-                <div className="form-group">
-                    <label htmlFor="text">Текст заметки </label>
-                    <input type="text" className="form-control" name="text" value={this.state.text}
+
+                <table>
+                    <tr>
+                        <td>
+                            <label htmlFor="text">Текст заметки </label>
+                        </td>
+                        <td>
+                            <input type="text" className="form-control-text" name="text" value={this.state.text}
                            onChange={(event) => this.handleChange(event)}/>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="project">Проект </label>
-                    <Select name="project" className='form-control' onChange={(event)=>this.handleChangeSelect(event)}
-                            value={{ label: this.props.current_project.name, value: this.props.current_project.Id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="project">Проект </label>
+                        </td>
+                        <td>
+                            <Select name="project" className='form-control-select' onChange={(event)=>this.handleChangeSelect(event)}
                             options={this.props.projects.map((item) => ({ label: item.name, value: item.id, name: 'project' }))} />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="user">Пользователь </label>
-                    <Select name="user" className='form-control' onChange={(event)=>this.handleChangeSelect(event)}
-                            value={{ label: this.props.current_user.username, value: this.props.current_user.Id }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="user">Пользователь </label>
+                        </td>
+                        <td>
+                            <Select name="user" className='form-control-select' onChange={(event)=>this.handleChangeSelect(event)}
                             options={this.props.users.map((item)=>({ label: item.username, value: item.id, name: 'user' }))} />
-                </div>
+                        </td>
+                    </tr>
+                </table>
                 <input type="submit" className="btn btn-primary" value="Save"/>
             </form>
         );

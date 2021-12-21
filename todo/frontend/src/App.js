@@ -154,10 +154,10 @@ class App extends React.Component {
         const headers = this.get_headers();
         axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers})
             .then(response => {
-                this.setState({projects: this.state.projects.filter((item)=>item.id !== id)})
-                this.setState({todos: this.state.todos.filter((item)=>item.project !== id)});
+                // this.setState({projects: this.state.projects.filter((item)=>item.id !== id)})
+                // this.setState({todos: this.state.todos.filter((item)=>item.project !== id)});
 
-                //this.load_data();
+                this.load_data();
 
             }).catch(error => {
                 console.log(error);
@@ -171,11 +171,11 @@ class App extends React.Component {
         axios.post(`http://127.0.0.1:8000/api/projects/`, data, {headers})
             .then(response => {
 
-              let new_project = response.data
+              //let new_project = response.data
               // const user = this.state.users.filter((item) => item.username === new_project.user[0])[0];
               // new_project.user = user;
 
-              this.setState({projects: [...this.state.projects, new_project]})
+              this.load_data();
 
             }).catch(error => console.log(error))
     }
@@ -204,11 +204,12 @@ class App extends React.Component {
         axios.post(`http://127.0.0.1:8000/api/todo/`, data, {headers})
             .then(response => {
 
-              let new_todo = response.data
+              //let new_todo = response.data
               // const user = this.state.users.filter((item) => item.username === new_project.user[0])[0];
               // new_project.user = user;
+              //this.setState({todos: [...this.state.todos, new_todo]})
 
-              this.setState({todos: [...this.state.todos, new_todo]})
+                this.load_data();
 
             }).catch(error => console.log(error))
     }
@@ -290,15 +291,26 @@ class App extends React.Component {
                                     </div>
                                 }/>
                                 <Route exact path={app_path.project_create} component={ () =>
-                                    <ProjectForm users={this.state.users}
-                                                 is_create={true}
-                                                 createProject={(name, repo_url, user) =>
-                                                     this.createProject(name, repo_url, user)}/>
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Создание проекта</b>
+                                        </div>
+                                        <ProjectForm users={this.state.users}
+                                                     is_create={true}
+                                                     createProject={(name, repo_url, user) =>
+                                                         this.createProject(name, repo_url, user)}/>
+                                    </div>
                                 }/>
                                 <Route exact path={app_path.todo_create} component={ () =>
-                                    <TodoForm users={this.state.users}
-                                              projects={this.state.projects}
-                                        createTodo={(text, project, user) => this.createTodo(text, project, user)}/>
+                                    <div>
+                                        <div className="contentDiscription">
+                                            <b>Создание заметки</b>
+                                        </div>
+                                        <TodoForm users={this.state.users}
+                                                  projects={this.state.projects}
+                                                  createTodo={(text, project, user) =>
+                                                      this.createTodo(text, project, user)}/>
+                                    </div>
                                 }/>
                                 <Route component={NotFound404}/>
                             </Switch>

@@ -7,7 +7,7 @@ class ProjectForm extends React.Component {
         this.state = {
                 name: '',
                 repo_url: '',
-                user: ''
+                user: []
             };
         if (!props.is_create) {
             let url_split = document.location.hash.split('/');
@@ -74,25 +74,38 @@ class ProjectForm extends React.Component {
 
         return (
             <form onSubmit={(event) => this.handleSubmit(event)}>
-                <div className="form-group">
-                    <label htmlFor="name">Название </label>
-                    <input type="text" className="form-control" name="name" value={this.state.name}
-                           onChange={(event) => this.handleChange(event)}/>
-                </div>
 
-                <div className="form-group">
-                    <label htmlFor="repo_url">URL </label>
-                    <input type="text" className="form-control" name="repo_url" value={this.state.repo_url}
+                <table>
+                    <tr>
+                        <td>
+                            <label htmlFor="name">Название </label>
+                        </td>
+                        <td>
+                            <input type="text" className="form-control-text" name="name" value={this.state.name}
                            onChange={(event) => this.handleChange(event)}/>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="user">Пользователь </label>
-                    <select name="user" className='form-control' multiple onChange={(event)=>this.handleUserChange(event)}
-                    value={this.state.user}>
-                        {this.props.users.map((item)=><option key={item.id} value={item.id}>{item.username}</option>)}
-                    </select>
-                </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="repo_url">URL </label>
+                        </td>
+                        <td>
+                            <input type="text" className="form-control-text" name="repo_url" value={this.state.repo_url}
+                           onChange={(event) => this.handleChange(event)}/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label htmlFor="user">Пользователи </label>
+                        </td>
+                        <td>
+                            <select name="user" className='form-control-select' multiple onChange={(event)=>this.handleUserChange(event)}
+                            value={this.state.user}>
+                                {this.props.users.map((item)=><option key={item.id} value={item.id}>{item.username}</option>)}
+                            </select>
+                        </td>
+                    </tr>
+                </table>
                 <input type="submit" className="btn btn-primary" value="Save"/>
             </form>
         );

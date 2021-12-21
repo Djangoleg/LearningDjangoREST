@@ -14,7 +14,7 @@ from .serializers import ProjectModelSerializer, ToDoModelSerializer
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 10
+    default_limit = 100
 
 
 class ProjectLimitOffsetPaginatonViewSet(ModelViewSet):
@@ -25,7 +25,7 @@ class ProjectLimitOffsetPaginatonViewSet(ModelViewSet):
 
 
 class TodoLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 20
+    default_limit = 100
 
 
 class ToDoModelViewSet(ModelViewSet):

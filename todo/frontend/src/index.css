@@ -46,6 +46,16 @@ code {
     text-align: -moz-center;
 }
 
+.form-control-select{
+   width: 50%;
+}
+
+.form-control-text {
+    width: 49%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
 .contentDiscription {
     margin-top: 20px;
 }
