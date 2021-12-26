@@ -71,4 +71,6 @@ urlpatterns = [
     # path('api/users/v2', include('users.urls', namespace='v2')),
 
     path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
