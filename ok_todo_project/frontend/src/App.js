@@ -13,10 +13,10 @@ import ProjectTodoList from "./components/ProjectDetail";
 import {HashRouter, Route, Switch, Redirect} from 'react-router-dom';
 import app_path from "./AppPath";
 import {inactiveLinkClass, setActiveLink} from "./common"
-import {Link} from 'react-router-dom'
 import {NavLink} from "react-router-dom";
 import ProjectForm from "./components/ProjectForm";
 import TodoForm from "./components/TodoForm";
+import app_urls from "./AppURLs";
 
 
 const NotFound404 = ({location}) => {
@@ -64,7 +64,7 @@ class App extends React.Component {
     }
 
     get_token(username, password) {
-        axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username, password: password})
+        axios.post(app_urls.api_token_auth, {username: username, password: password})
             .then(response => {
 
                 this.set_token(response.data['token'], username);
@@ -86,7 +86,7 @@ class App extends React.Component {
 
         const headers = this.get_headers();
 
-        axios.get('http://127.0.0.1:8000/api/users/', {headers})
+        axios.get(app_urls.users, {headers})
             .then(response => {
                 const users = response.data.results
                 this.setState(
@@ -99,7 +99,7 @@ class App extends React.Component {
             console.log(error);
         });
 
-        axios.get('http://127.0.0.1:8000/api/projects/', {headers})
+        axios.get(app_urls.projects, {headers})
             .then(response => {
                 const projects = response.data.results
                 this.setState(
@@ -112,7 +112,7 @@ class App extends React.Component {
             console.log(error);
         });
 
-        axios.get('http://127.0.0.1:8000/api/todo/', {headers})
+        axios.get(app_urls.todo, {headers})
             .then(response => {
                 const todos = response.data.results
                 this.setState(
@@ -136,7 +136,7 @@ class App extends React.Component {
 
     deleteTodo(id) {
         const headers = this.get_headers();
-        axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers})
+        axios.delete(`${app_urls.todo}${id}`, {headers})
             .then(response => {
                 // Вместо удаления заметки, делаем её неактивной.
                 this.state.todos.map(function(item, i) {
@@ -152,7 +152,7 @@ class App extends React.Component {
 
     deleteProject(id) {
         const headers = this.get_headers();
-        axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers})
+        axios.delete(`${app_urls.projects}${id}`, {headers})
             .then(response => {
                 // this.setState({projects: this.state.projects.filter((item)=>item.id !== id)})
                 // this.setState({todos: this.state.todos.filter((item)=>item.project !== id)});
@@ -168,7 +168,7 @@ class App extends React.Component {
         const headers = this.get_headers()
         const data = {name: name, repoUrl: repo_url, user: user}
 
-        axios.post(`http://127.0.0.1:8000/api/projects/`, data, {headers})
+        axios.post(app_urls.projects, data, {headers})
             .then(response => {
 
               //let new_project = response.data
@@ -184,7 +184,7 @@ class App extends React.Component {
         const headers = this.get_headers()
         const data = {id: id, name: name, repoUrl: repo_url, user: user}
 
-        axios.put(`http://127.0.0.1:8000/api/projects/${id}/`, data, {headers})
+        axios.put(`${app_urls.projects}${id}/`, data, {headers})
             .then(response => {
 
               this.load_data();
@@ -197,7 +197,7 @@ class App extends React.Component {
         const headers = this.get_headers()
         const data = {text: text, project: project, user: user}
 
-        axios.post(`http://127.0.0.1:8000/api/todo/`, data, {headers})
+        axios.post(app_urls.todo, data, {headers})
             .then(response => {
 
               //let new_todo = response.data

@@ -8,8 +8,8 @@ services:
       - 5432:5432
     environment:
       POSTGRES_USER: ok
-      POSTGRES_PASSWORD: 1
-      POSTGRES_DB: db
+      POSTGRES_PASSWORD: ok123456@@
+      POSTGRES_DB: todo
   backend:
     build: ./todo
     privileged: true
@@ -19,8 +19,8 @@ services:
       bash -c "
       python manage.py migrate &&
       python manage.py create_users &&
-      gunicorn library.wsgi -b 0.0.0.0:8080
-      "
+      gunicorn todo.wsgi -b 0.0.0.0:8080"
+#     python manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
   nginx:
@@ -35,3 +35,6 @@ services:
       - 80:80
     depends_on:
       - nginx
+
+
+

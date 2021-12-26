@@ -31,6 +31,17 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "http://10.3.3.25:8080",
+    "http://10.3.3.25:8000",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
 
 # Application definition
@@ -93,6 +104,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'todo',
+    #     'USER': 'ok',
+    #     'PASSWORD': 'ok123456@@',
+    #     'HOST': 'db',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation
